@@ -1,4 +1,4 @@
-setwd("~/Desktop/project/")
+#setwd("~/Desktop/getting_and_cleaning_data_project/project/")
 library(dplyr)
 
 #Setting up the file locations
@@ -14,7 +14,7 @@ activity_label_header <- c("activity_id", "activity_name")
 label_headers <- c("activity_id")
 features_header <- read.table(features_directroy)
 
-#Reading in the data
+#Reading in the data and applying sensible column names
 test_data <- read.csv(test_directory, header=FALSE, sep = "", col.names = features_header[,2])
 train_data <- read.csv(train_directory, header=FALSE, sep = "", col.names = features_header[,2])
 test_labels <- read.csv(test_labels_directory, header=FALSE, sep = "", col.names = label_headers)
@@ -32,6 +32,5 @@ complete_data <- select(complete_data, contains("mean"), contains("std"), activi
 #Giving activity column descriptive activity names
 complete_data <- merge(complete_data, activity_labels)
 
-
 #Output data set
-write.table(complete_data, file = "./tidy_data.csv", row.names = FALSE)
+write.table(complete_data, file = "./tidy_data.txt", row.names = FALSE)
